@@ -1,0 +1,115 @@
+
+#include <iostream>
+#include <stdlib.h>
+#include <conio.h>
+#include <windows.h>
+#include <cstdlib>
+#include<string.h>
+#include<stdio.h>  
+
+using namespace std;
+
+int i=0;
+
+typedef struct nodo{
+	int dato;
+	struct nodo* siguiente;
+}nodo;
+
+nodo* primero = NULL;
+
+char menu(){
+	char op;
+	system("cls");
+	printf("\n ** MENU * *");
+	printf("\n 1. INSETAR REGISTRO ");
+	printf("\n 2. MOSTRAR PILA ");
+	printf("\n 3. ELIMINAR NODO ");
+	printf("\n 4. SALIR");
+	printf("\n OPCION-->"); fflush(stdin);
+	op=getch();
+	return op;	
+	system("pause");
+}
+
+//FUNCIONES
+void insertarNodo( );
+void eliminarNodo();
+void desplegarPila();
+
+int main(void){ //Opciones 1 & 2 para insertar nodo y mostrar lista
+	char op;
+	int dato;
+	do{
+		op=menu();
+		switch(op){
+			
+			case'1':
+				system("cls");
+				insertarNodo();
+				insertarNodo();
+				insertarNodo();
+				insertarNodo();
+				insertarNodo();
+	
+				
+//				do{
+//					cout<<"Ingresa el numero de elemtos que quiere ingresar:\n";
+//	   				scanf("%d",&dato);
+//     				insertarNodo();
+//     				i++;
+//					}while (dato=='S'||dato=='S');
+
+				break;
+				
+				case'2':
+					system("cls");
+					cout<<"\n\t\tPila";
+					desplegarPila();
+					system("\t\tpause");
+					break;
+					case'3':
+						system("cls");
+						eliminarNodo();
+						system("pause");
+						break;						
+		}
+	}while(op!='4');
+	return 0;
+}
+
+void insertarNodo(){
+	nodo* nuevo = (nodo*) malloc(sizeof(nodo));
+	printf(" Ingrese el dato que contendra el nuevo Nodo: ");
+	scanf("%d", &nuevo->dato);
+	nuevo->siguiente = primero;
+	primero = nuevo;
+	i++;
+	getch();
+}
+
+void eliminarNodo(){
+	struct nodo * actual;
+	if(primero != NULL)
+	{
+		actual=primero;
+		primero=primero->siguiente;
+		i--;
+	}
+	delete(actual);
+	getch();
+}
+
+void desplegarPila(){
+	nodo* actual = (nodo*) malloc(sizeof(nodo));
+	actual = primero;
+	if(primero != NULL){
+		while(actual != NULL){
+			printf("\n\t %d \n", actual -> dato);
+			actual = actual -> siguiente;			
+		}
+	}else{
+		printf("\n La pila se encuentra Vacia\n\n");
+	}
+	getch();
+}
